@@ -1,0 +1,11 @@
+{
+	"InstallScripts" : 
+	[
+		"/tmp/AbyssVerbVN/build/cmake_install.cmake",
+		"/tmp/AbyssVerbVN/build/JUCE/cmake_install.cmake",
+		"/tmp/AbyssVerbVN/build/JUCE/modules/cmake_install.cmake",
+		"/tmp/AbyssVerbVN/build/JUCE/extras/Build/cmake_install.cmake",
+		"/tmp/AbyssVerbVN/build/JUCE/extras/Build/juceaide/cmake_install.cmake"
+	],
+	"Parallel" : false
+}

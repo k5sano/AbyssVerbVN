@@ -2,7 +2,7 @@
 #include "PluginEditor.h"
 
 //==============================================================================
-AbyssVerbV1AudioProcessor::AbyssVerbV1AudioProcessor()
+AbyssVerbVNAudioProcessor::AbyssVerbVNAudioProcessor()
     : AudioProcessor(BusesProperties()
         .withInput("Input", juce::AudioChannelSet::stereo(), true)
         .withOutput("Output", juce::AudioChannelSet::stereo(), true)),
@@ -10,11 +10,11 @@ AbyssVerbV1AudioProcessor::AbyssVerbV1AudioProcessor()
 {
 }
 
-AbyssVerbV1AudioProcessor::~AbyssVerbV1AudioProcessor() {}
+AbyssVerbVNAudioProcessor::~AbyssVerbVNAudioProcessor() {}
 
 //==============================================================================
 juce::AudioProcessorValueTreeState::ParameterLayout
-AbyssVerbV1AudioProcessor::createParameterLayout()
+AbyssVerbVNAudioProcessor::createParameterLayout()
 {
     std::vector<std::unique_ptr<juce::RangedAudioParameter>> params;
 
@@ -98,7 +98,7 @@ AbyssVerbV1AudioProcessor::createParameterLayout()
 }
 
 //==============================================================================
-void AbyssVerbV1AudioProcessor::prepareToPlay(double sampleRate, int samplesPerBlock)
+void AbyssVerbVNAudioProcessor::prepareToPlay(double sampleRate, int samplesPerBlock)
 {
     // Prepare all processing modules
     inputConditionerL.prepare(sampleRate);
@@ -145,9 +145,9 @@ void AbyssVerbV1AudioProcessor::prepareToPlay(double sampleRate, int samplesPerB
     dcBlockR_x1 = dcBlockR_y1 = 0.0f;
 }
 
-void AbyssVerbV1AudioProcessor::releaseResources() {}
+void AbyssVerbVNAudioProcessor::releaseResources() {}
 
-bool AbyssVerbV1AudioProcessor::isBusesLayoutSupported(const BusesLayout& layouts) const
+bool AbyssVerbVNAudioProcessor::isBusesLayoutSupported(const BusesLayout& layouts) const
 {
     if (layouts.getMainOutputChannelSet() != juce::AudioChannelSet::stereo())
         return false;
@@ -156,7 +156,7 @@ bool AbyssVerbV1AudioProcessor::isBusesLayoutSupported(const BusesLayout& layout
     return true;
 }
 
-void AbyssVerbV1AudioProcessor::processBlock(juce::AudioBuffer<float>& buffer,
+void AbyssVerbVNAudioProcessor::processBlock(juce::AudioBuffer<float>& buffer,
                                              juce::MidiBuffer& midiMessages)
 {
     juce::ScopedNoDenormals noDenormals;
@@ -254,33 +254,33 @@ void AbyssVerbV1AudioProcessor::processBlock(juce::AudioBuffer<float>& buffer,
 }
 
 //==============================================================================
-juce::AudioProcessorEditor* AbyssVerbV1AudioProcessor::createEditor()
+juce::AudioProcessorEditor* AbyssVerbVNAudioProcessor::createEditor()
 {
-    return new AbyssVerbV1AudioProcessorEditor(*this);
+    return new AbyssVerbVNAudioProcessorEditor(*this);
 }
 
-bool AbyssVerbV1AudioProcessor::hasEditor() const { return true; }
+bool AbyssVerbVNAudioProcessor::hasEditor() const { return true; }
 
-const juce::String AbyssVerbV1AudioProcessor::getName() const { return JucePlugin_Name; }
-bool AbyssVerbV1AudioProcessor::acceptsMidi() const { return false; }
-bool AbyssVerbV1AudioProcessor::producesMidi() const { return false; }
-bool AbyssVerbV1AudioProcessor::isMidiEffect() const { return false; }
-double AbyssVerbV1AudioProcessor::getTailLengthSeconds() const { return 10.0; }
+const juce::String AbyssVerbVNAudioProcessor::getName() const { return JucePlugin_Name; }
+bool AbyssVerbVNAudioProcessor::acceptsMidi() const { return false; }
+bool AbyssVerbVNAudioProcessor::producesMidi() const { return false; }
+bool AbyssVerbVNAudioProcessor::isMidiEffect() const { return false; }
+double AbyssVerbVNAudioProcessor::getTailLengthSeconds() const { return 10.0; }
 
-int AbyssVerbV1AudioProcessor::getNumPrograms() { return 1; }
-int AbyssVerbV1AudioProcessor::getCurrentProgram() { return 0; }
-void AbyssVerbV1AudioProcessor::setCurrentProgram(int) {}
-const juce::String AbyssVerbV1AudioProcessor::getProgramName(int) { return {}; }
-void AbyssVerbV1AudioProcessor::changeProgramName(int, const juce::String&) {}
+int AbyssVerbVNAudioProcessor::getNumPrograms() { return 1; }
+int AbyssVerbVNAudioProcessor::getCurrentProgram() { return 0; }
+void AbyssVerbVNAudioProcessor::setCurrentProgram(int) {}
+const juce::String AbyssVerbVNAudioProcessor::getProgramName(int) { return {}; }
+void AbyssVerbVNAudioProcessor::changeProgramName(int, const juce::String&) {}
 
-void AbyssVerbV1AudioProcessor::getStateInformation(juce::MemoryBlock& destData)
+void AbyssVerbVNAudioProcessor::getStateInformation(juce::MemoryBlock& destData)
 {
     auto state = apvts.copyState();
     std::unique_ptr<juce::XmlElement> xml(state.createXml());
     copyXmlToBinary(*xml, destData);
 }
 
-void AbyssVerbV1AudioProcessor::setStateInformation(const void* data, int sizeInBytes)
+void AbyssVerbVNAudioProcessor::setStateInformation(const void* data, int sizeInBytes)
 {
     std::unique_ptr<juce::XmlElement> xmlState(getXmlFromBinary(data, sizeInBytes));
     if (xmlState.get() != nullptr)
@@ -291,5 +291,5 @@ void AbyssVerbV1AudioProcessor::setStateInformation(const void* data, int sizeIn
 //==============================================================================
 juce::AudioProcessor* JUCE_CALLTYPE createPluginFilter()
 {
-    return new AbyssVerbV1AudioProcessor();
+    return new AbyssVerbVNAudioProcessor();
 }

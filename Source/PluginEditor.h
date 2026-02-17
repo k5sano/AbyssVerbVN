@@ -1,18 +1,18 @@
 #pragma once
-#include <juce_audio_processors/juce_audio_processors.h>
+#include <JuceHeader.h>
 #include "PluginProcessor.h"
 
-class AbyssVerbV1AudioProcessorEditor : public juce::AudioProcessorEditor
+class AbyssVerbVNAudioProcessorEditor : public juce::AudioProcessorEditor
 {
 public:
-    AbyssVerbV1AudioProcessorEditor(AbyssVerbV1AudioProcessor&);
-    ~AbyssVerbV1AudioProcessorEditor() override;
+    AbyssVerbVNAudioProcessorEditor(AbyssVerbVNAudioProcessor&);
+    ~AbyssVerbVNAudioProcessorEditor() override;
 
     void paint(juce::Graphics&) override;
     void resized() override;
 
 private:
-    AbyssVerbV1AudioProcessor& audioProcessor;
+    AbyssVerbVNAudioProcessor& audioProcessor;
 
     // Slider with label and attachment
     struct KnobWithLabel
@@ -39,5 +39,5 @@ private:
     void setupKnob(KnobWithLabel& knob, const juce::String& paramId,
                    const juce::String& labelText);
 
-    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(AbyssVerbV1AudioProcessorEditor)
+    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(AbyssVerbVNAudioProcessorEditor)
 };

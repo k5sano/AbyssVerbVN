@@ -2,7 +2,7 @@
 #include "PluginEditor.h"
 
 //==============================================================================
-AbyssVerbV1AudioProcessorEditor::AbyssVerbV1AudioProcessorEditor(AbyssVerbV1AudioProcessor& p)
+AbyssVerbVNAudioProcessorEditor::AbyssVerbVNAudioProcessorEditor(AbyssVerbVNAudioProcessor& p)
     : AudioProcessorEditor(&p), audioProcessor(p)
 {
     setSize(900, 620);
@@ -34,9 +34,9 @@ AbyssVerbV1AudioProcessorEditor::AbyssVerbV1AudioProcessorEditor(AbyssVerbV1Audi
     setupKnob(masterMixKnob,       "masterMix",       "MASTER MIX");
 }
 
-AbyssVerbV1AudioProcessorEditor::~AbyssVerbV1AudioProcessorEditor() {}
+AbyssVerbVNAudioProcessorEditor::~AbyssVerbVNAudioProcessorEditor() {}
 
-void AbyssVerbV1AudioProcessorEditor::setupKnob(KnobWithLabel& knob,
+void AbyssVerbVNAudioProcessorEditor::setupKnob(KnobWithLabel& knob,
                                                 const juce::String& paramId,
                                                 const juce::String& labelText)
 {
@@ -62,7 +62,7 @@ void AbyssVerbV1AudioProcessorEditor::setupKnob(KnobWithLabel& knob,
         audioProcessor.apvts, paramId, knob.slider);
 }
 
-void AbyssVerbV1AudioProcessorEditor::paint(juce::Graphics& g)
+void AbyssVerbVNAudioProcessorEditor::paint(juce::Graphics& g)
 {
     // Dark gradient background (standard, no image loading)
     juce::ColourGradient gradient(
@@ -113,7 +113,7 @@ void AbyssVerbV1AudioProcessorEditor::paint(juce::Graphics& g)
     g.drawText("// MIX", 25, 495, 150, 18, juce::Justification::centredLeft);
 }
 
-void AbyssVerbV1AudioProcessorEditor::resized()
+void AbyssVerbVNAudioProcessorEditor::resized()
 {
     const int knobWidth = 110;
     const int knobHeight = 85;

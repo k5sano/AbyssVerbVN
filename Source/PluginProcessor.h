@@ -1,7 +1,6 @@
 #pragma once
 
-#include <juce_audio_processors/juce_audio_processors.h>
-#include <juce_dsp/juce_dsp.h>
+#include <JuceHeader.h>
 #include <random>
 
 //==============================================================================
@@ -86,7 +85,7 @@ private:
     float hpState = 0.0f;
 
     float bodyB0 = 1.0f, bodyB1 = 0.0f, bodyB2 = 0.0f;
-    float bodyA1 = 0.0f, bodyA2 = 0.0f;
+    float bodyA0 = 1.0f, bodyA1 = 0.0f, bodyA2 = 0.0f;
     float bodyX1 = 0.0f, bodyX2 = 0.0f, bodyY1 = 0.0f, bodyY2 = 0.0f;
 
     float piezoCorrect = 1.0f;
@@ -482,11 +481,11 @@ private:
 //==============================================================================
 // Main Processor
 //==============================================================================
-class AbyssVerbV1AudioProcessor : public juce::AudioProcessor
+class AbyssVerbVNAudioProcessor : public juce::AudioProcessor
 {
 public:
-    AbyssVerbV1AudioProcessor();
-    ~AbyssVerbV1AudioProcessor() override;
+    AbyssVerbVNAudioProcessor();
+    ~AbyssVerbVNAudioProcessor() override;
 
     void prepareToPlay(double sampleRate, int samplesPerBlock) override;
     void releaseResources() override;
@@ -530,5 +529,5 @@ private:
     float dcBlockL_x1 = 0.0f, dcBlockL_y1 = 0.0f;
     float dcBlockR_x1 = 0.0f, dcBlockR_y1 = 0.0f;
 
-    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(AbyssVerbV1AudioProcessor)
+    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(AbyssVerbVNAudioProcessor)
 };
